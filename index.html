@@ -16,7 +16,7 @@
 }
 
 body{
-    min-height:100vh;
+    min-height:100dvh;
     background:linear-gradient(135deg,#050505,#18001f,#32003d);
     color:white;
     display:flex;
@@ -39,6 +39,14 @@ body{
     box-shadow: 0 0 30px rgba(255,0,255,0.1);
     width: 100%;
     overflow: hidden;
+    background-image:
+    linear-gradient(
+    rgba(15, 0, 20, 0.671),
+    rgba(8, 0, 10, 0.774)
+),
+url('./fotos/fundo-coracoes.png');
+background-size: cover;
+background-position: center;
 }
 
 .title{
@@ -118,7 +126,7 @@ button:hover{
     object-position: center;
 
     border-radius: 25px;
-    border: 4px solid #ff6cff;
+    border: 4px solid #fcfcfc;
 
     margin-bottom: 20px;
 
@@ -129,6 +137,33 @@ button:hover{
     transform: translateZ(0);
 
     filter: contrast(1.02) saturate(1.03);
+}
+
+.copy-btn{
+    margin-top:20px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.12);
+    color:#ffdfff;
+    padding:14px 18px;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:1rem;
+    font-weight:bold;
+    transition:0.3s;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+        0 0 15px rgba(255,108,255,0.15);
+}
+
+.copy-btn:hover{
+    transform:scale(1.03);
+
+    background:rgba(255,255,255,0.12);
+
+    box-shadow:
+        0 0 20px rgba(255,108,255,0.25);
 }
 
 .love-title{
@@ -197,7 +232,15 @@ function calcularTempo(dataInicio){
     const meses = Math.floor((dias % 365) / 30);
     const diasRestantes = dias % 30;
 
+
     return `${anos} ano(s), ${meses} mês(es) e ${diasRestantes} dia(s)`;
+}
+
+function copiarLink(link){
+
+navigator.clipboard.writeText(link);
+
+alert('Link copiado ❤️');
 }
 
 function mostrarCadastro(){
@@ -327,7 +370,7 @@ async function carregarCasal(){
                 >
 
                 <div class="love-title">
-                    ${casal.nome1} ❤️ ${casal.nome2}
+                    ${casal.nome1} 💘 ${casal.nome2}
                 </div>
 
                 <div class="counter" id="contador"></div>
@@ -340,9 +383,9 @@ async function carregarCasal(){
                     <source src="${musicaPath}" type="audio/mpeg">
                 </audio>
 
-                <div class="route">
-                    ${urlFinal}
-                </div>
+                <button class="copy-btn" onclick="copiarLink('${urlFinal}')">
+    📋          Copiar Link
+                </button>
 
             </div>
 
